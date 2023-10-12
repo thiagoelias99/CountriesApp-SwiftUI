@@ -11,6 +11,7 @@
 		C34A1C502AD8195C00587234 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C4F2AD8195C00587234 /* ContentView.swift */; };
 		C34A1C522AD8195D00587234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34A1C512AD8195D00587234 /* Assets.xcassets */; };
 		C34A1C552AD8195D00587234 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34A1C542AD8195D00587234 /* Preview Assets.xcassets */; };
+		C34A1C5E2AD81B8B00587234 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C5D2AD81B8B00587234 /* RoundedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		C34A1C4F2AD8195C00587234 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C34A1C512AD8195D00587234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C34A1C542AD8195D00587234 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C34A1C5D2AD81B8B00587234 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		C34A1C4C2AD8195C00587234 /* CountriesApp SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				C34A1C5B2AD81B6600587234 /* View */,
 				C34A1C4D2AD8195C00587234 /* CountriesApp_SwiftUIApp.swift */,
 				C34A1C4F2AD8195C00587234 /* ContentView.swift */,
 				C34A1C512AD8195D00587234 /* Assets.xcassets */,
@@ -65,6 +68,22 @@
 				C34A1C542AD8195D00587234 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C34A1C5B2AD81B6600587234 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C34A1C5C2AD81B6F00587234 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C34A1C5C2AD81B6F00587234 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C34A1C5D2AD81B8B00587234 /* RoundedTextField.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34A1C502AD8195C00587234 /* ContentView.swift in Sources */,
+				C34A1C5E2AD81B8B00587234 /* RoundedTextField.swift in Sources */,
 				C34A1C4E2AD8195C00587234 /* CountriesApp_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
