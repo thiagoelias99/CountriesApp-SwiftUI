@@ -12,6 +12,8 @@ struct LoginView: View {
     @State var password: String = ""
     @State var rememberUser: Bool = true
     
+    @State var goToHomeView: Bool = false
+    
     var body: some View {
         VStack(alignment: .center){
             Image("logo")
@@ -35,7 +37,7 @@ struct LoginView: View {
                     .offset(y: -25)
                 }
                 KeepConectedToggle(rememberUser: $rememberUser)
-                StyledButton(placeholder: "Entrar")
+                StyledButton(placeholder: "Entrar"){goToHomeView = true}
                 AppleButton()
                 NavigationLink(destination: SignUpView()){
                     LoginFooterLink(message: "Não possui conta?", span: "Cadastre")
@@ -56,6 +58,7 @@ struct LoginView: View {
         }
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $goToHomeView){ HomeView()}
     }
 }
 

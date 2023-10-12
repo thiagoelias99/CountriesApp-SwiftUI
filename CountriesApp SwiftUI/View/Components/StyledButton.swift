@@ -9,10 +9,11 @@ import SwiftUI
 
 struct StyledButton: View {
     var placeholder: String
+    var action: (() -> Void)?
     
     var body: some View {
         Button(action: {
-            
+            (action ?? defaultAction)()
         }){
             Text(placeholder)
                 .font(.body)
@@ -24,8 +25,15 @@ struct StyledButton: View {
         .background(Color("AppMainColor"))
         .cornerRadius(10)
         .padding(.top)
+        
+    }
+    
+    func defaultAction(){
+        print("Button \(placeholder) pressed!")
     }
 }
+
+
 
 struct StyledButton_Previews: PreviewProvider {
     static var previews: some View {

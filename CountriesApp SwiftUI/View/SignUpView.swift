@@ -18,7 +18,7 @@ struct SignUpView: View {
             Image("logo")
                 .resizable()
                 .scaledToFit()
-                .frame(height: 200)
+                .frame(height: 160)
             
             VStack(alignment: .leading){
                 Text("Crie sua conta")
@@ -28,6 +28,7 @@ struct SignUpView: View {
                 RoundedTextField(placeholder: "Seu email", text: $email)
                 RoundedTextField(placeholder: "Digite uma senha", text: $password, isPassword: true)
                 RoundedTextField(placeholder: "Repita a senha", text: $password, isPassword: true)
+                StyledButton(placeholder: "Criar conta")
                 NavigationLink(destination: LoginView()){
                     LoginFooterLink(message: "Já possui conta?", span: "Entre")
                 }
