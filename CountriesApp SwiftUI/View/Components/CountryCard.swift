@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CountryCard: View {
-    var country: CountryList
+    var country: CountryList2
     
     var body: some View {
         HStack{
@@ -37,6 +37,6 @@ struct CountryCard: View {
 
 struct CountryCard_Previews: PreviewProvider {
     static var previews: some View {
-        CountryCard(country: CountryList(cca2: "BR", namePt: "Brasil", nameUs: "Brazil", nameES: "Brasil", flagPng: "https://flagcdn.com/w320/br.png", flagSvg: "https://flagcdn.com/br.svg"))
+        CountryCard(country: CountryList2(cca2: "BR", namePt: "Brasil", nameUs: "Brazil", nameES: "Brasil", flagPng: "https://flagcdn.com/w320/br.png", flagSvg: "https://flagcdn.com/br.svg"))
     }
 }
