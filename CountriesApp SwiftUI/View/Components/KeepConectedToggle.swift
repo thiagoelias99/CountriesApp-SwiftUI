@@ -14,9 +14,10 @@ struct KeepConectedToggle: View {
         HStack(alignment: .center){
             Spacer()
             Text("Manter conectado")
+                .foregroundColor(.gray)
                 .font(.caption)
             Toggle("", isOn: $rememberUser)
-
+                .tint(Color("AppMainColor"))
                 .frame(width: 50)
         }
     }

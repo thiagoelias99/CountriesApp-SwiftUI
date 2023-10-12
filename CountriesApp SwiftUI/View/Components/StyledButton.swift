@@ -21,7 +21,7 @@ struct StyledButton: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 40)
-        .background(.orange)
+        .background(Color("AppMainColor"))
         .cornerRadius(10)
         .padding(.top)
     }

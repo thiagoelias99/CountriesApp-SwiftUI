@@ -18,18 +18,21 @@ struct LoginView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 200)
-                .padding(.horizontal, 20)
             
             VStack(alignment: .leading){
                 Text("Entre com sua conta")
+                    .font(.title)
+                    .bold()
                 RoundedTextField(placeholder: "Email", text: $email)
                 ZStack{
                     RoundedTextField(placeholder: "Senha", text: $password, isPassword: true)
                     HStack{
                         Spacer()
                         Text("Recuperar Senha")
+                            .bold()
+                            .foregroundColor(Color("AppMainColor"))
                     }
-                    .offset(y: -30)
+                    .offset(y: -25)
                 }
                 KeepConectedToggle(rememberUser: $rememberUser)
                 StyledButton(placeholder: "Entrar")
@@ -37,8 +40,19 @@ struct LoginView: View {
                 LoginFooterLink(message: "Não possui conta?", span: "Cadastre")
             }
             .padding(.horizontal, 16)
+            .padding(.vertical, 32)
+            .background(Color("AppMainLightColor"))
+            .clipShape(RoundedRectangle(cornerRadius: 20)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color("AppMainColor"), lineWidth: 2)
+            )
+            Spacer()
             Owner()
+            Spacer()
         }
+        .padding(.horizontal, 16)
     }
 }
 
