@@ -15,14 +15,11 @@ struct LoginFooterLink: View {
     var body: some View {
         HStack{
             Text(message)
-                .foregroundColor(.gray)
-            Button {
-                
-            } label: {
-                Text(span)
-                    .foregroundColor(.black)
-                    .bold()
-            }
+                .foregroundColor(.gray)            
+            Text(span)
+                .foregroundColor(Color("AppMainColor"))
+                .bold()
+            
         }
         .frame(maxWidth: .infinity)
         .padding(.top)
@@ -32,8 +29,8 @@ struct LoginFooterLink: View {
 struct LoginFooterLink_Previews: PreviewProvider {
     static var previews: some View {
         LoginFooterLink(
-        message: "Não possui conta?",
-        span: "Cadastre"
+            message: "Não possui conta?",
+            span: "Cadastre"
         )
     }
 }

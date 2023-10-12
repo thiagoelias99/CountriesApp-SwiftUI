@@ -18,6 +18,7 @@
 		C34A1C662AD838C600587234 /* LoginFooterLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C652AD838C500587234 /* LoginFooterLink.swift */; };
 		C34A1C682AD83AB700587234 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C672AD83AB700587234 /* Owner.swift */; };
 		C34A1C6A2AD83B4000587234 /* KeepConectedToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C692AD83B4000587234 /* KeepConectedToggle.swift */; };
+		C3A405452AD852B90047473F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405442AD852B90047473F /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		C34A1C652AD838C500587234 /* LoginFooterLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFooterLink.swift; sourceTree = "<group>"; };
 		C34A1C672AD83AB700587234 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		C34A1C692AD83B4000587234 /* KeepConectedToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepConectedToggle.swift; sourceTree = "<group>"; };
+		C3A405442AD852B90047473F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				C34A1C5C2AD81B6F00587234 /* Components */,
 				C34A1C5F2AD8300300587234 /* LoginView.swift */,
+				C3A405442AD852B90047473F /* SignUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				C34A1C5E2AD81B8B00587234 /* RoundedTextField.swift in Sources */,
 				C34A1C622AD8370600587234 /* StyledButton.swift in Sources */,
 				C34A1C602AD8300300587234 /* LoginView.swift in Sources */,
+				C3A405452AD852B90047473F /* SignUpView.swift in Sources */,
 				C34A1C4E2AD8195C00587234 /* CountriesApp_SwiftUIApp.swift in Sources */,
 				C34A1C662AD838C600587234 /* LoginFooterLink.swift in Sources */,
 				C34A1C6A2AD83B4000587234 /* KeepConectedToggle.swift in Sources */,

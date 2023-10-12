@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  SignUpView.swift
 //  CountriesApp SwiftUI
 //
 //  Created by user241339 on 10/12/23.
@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct SignUpView: View {
+    @State var name: String = ""
     @State var email: String = ""
     @State var password: String = ""
-    @State var rememberUser: Bool = true
+    @State var passwordCheck: String = ""
     
     var body: some View {
         VStack(alignment: .center){
@@ -20,29 +21,19 @@ struct LoginView: View {
                 .frame(height: 200)
             
             VStack(alignment: .leading){
-                Text("Entre com sua conta")
+                Text("Crie sua conta")
                     .font(.title)
                     .bold()
-                RoundedTextField(placeholder: "Email", text: $email)
-                ZStack{
-                    RoundedTextField(placeholder: "Senha", text: $password, isPassword: true)
-                    HStack{
-                        Spacer()
-                        Text("Recuperar Senha")
-                            .bold()
-                            .foregroundColor(Color("AppMainColor"))
-                    }
-                    .offset(y: -25)
-                }
-                KeepConectedToggle(rememberUser: $rememberUser)
-                StyledButton(placeholder: "Entrar")
-                AppleButton()
-                NavigationLink(destination: SignUpView()){
-                    LoginFooterLink(message: "Não possui conta?", span: "Cadastre")
+                RoundedTextField(placeholder: "Seu nome", text: $email)
+                RoundedTextField(placeholder: "Seu email", text: $email)
+                RoundedTextField(placeholder: "Digite uma senha", text: $password, isPassword: true)
+                RoundedTextField(placeholder: "Repita a senha", text: $password, isPassword: true)
+                NavigationLink(destination: LoginView()){
+                    LoginFooterLink(message: "Já possui conta?", span: "Entre")
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 32)
+            .padding(.vertical, 24)
             .background(Color("AppMainLightColor"))
             .clipShape(RoundedRectangle(cornerRadius: 20)
             )
@@ -59,8 +50,8 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        SignUpView()
     }
 }
