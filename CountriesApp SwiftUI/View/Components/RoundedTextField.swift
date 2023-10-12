@@ -17,32 +17,36 @@ struct RoundedTextField: View {
     var empty: Bool {text.isEmpty}
     
     var body: some View {
-        HStack(spacing: 4){
-            ZStack{
-                TextField(placeholder, text: $text)
-                    .opacity(!isPassword || showPassword ? 1 : 0)
+        VStack(alignment: .leading){
+            Text(placeholder)
+            HStack(spacing: 4){
+                ZStack{
+                    TextField("", text: $text)
+                        .opacity(!isPassword || showPassword ? 1 : 0)
+                    
+                    if isPassword{
+                        SecureField("", text: $text)
+                            .opacity(showPassword ? 0 : 1)
+                    }
+                }
                 
                 if isPassword{
-                    SecureField(placeholder, text: $text)
-                        .opacity(showPassword ? 0 : 1)
+                    Button(action: toggle){
+                        Image(systemName: showPassword ? "eye.slash" : "eye")
+                    }
+                    .foregroundColor(Color(uiColor: .tertiaryLabel))
+                    
                 }
             }
-            
-            if isPassword{
-                Button(action: toggle){
-                    Image(systemName: showPassword ? "eye.slash" : "eye")
-                }
-                .foregroundColor(Color(uiColor: .tertiaryLabel))
-                
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background{
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(lineWidth: empty ? 1 : 2)
+                    .foregroundColor(empty ? Color(uiColor: .systemGray2) : Color("lightPurple"))
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .background{
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(lineWidth: empty ? 1 : 2)
-                .foregroundColor(empty ? Color(uiColor: .systemGray2) : Color("lightPurple"))
-        }
+        
     }
     
     func toggle(){
