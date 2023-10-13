@@ -27,7 +27,7 @@ private var mockCountryApi = CountryInfo(
     regionPt: "América do sul")
 
 struct CountryMapTab: View {
-    var country: CountryInfo?
+    @Binding var country: CountryInfo?
     
     @State private var location = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
@@ -55,7 +55,7 @@ struct CountryMapTab: View {
                 MapMarker(coordinate: point.coordinate)
             }
             .onAppear(){
-                var coordinates = CLLocationCoordinate2D(latitude: country.latitude, longitude: country.longitude)
+                let coordinates = CLLocationCoordinate2D(latitude: country.latitude, longitude: country.longitude)
                 
                 location = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 30.0, longitudeDelta: 30.0))
             }
@@ -68,7 +68,7 @@ struct CountryMapTab: View {
 struct CountryMapTab_Previews: PreviewProvider {
     static var previews: some View {
         CountryMapTab(
-            country: mockCountryApi
+            country: .constant(mockCountryApi)
         )
     }
 }

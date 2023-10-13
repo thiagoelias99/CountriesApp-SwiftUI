@@ -26,7 +26,7 @@ private var mockCountryApi = CountryInfo(
     regionPt: "América do sul")
 
 struct CountryHistoryTab: View {
-    var country: CountryInfo?
+    @Binding var country: CountryInfo?
     
     var body: some View {
         if let country{
@@ -51,6 +51,6 @@ struct CountryHistoryTab: View {
 
 struct CountryHistoryTab_Previews: PreviewProvider {
     static var previews: some View {
-        CountryHistoryTab(country: mockCountryApi)
+        CountryHistoryTab(country: .constant(mockCountryApi))
     }
 }

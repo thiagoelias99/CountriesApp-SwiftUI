@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CountryInfo{
+struct CountryInfo: Codable{
     var area: Double
     var capitalsPt: [String]
     var cca2: String
@@ -48,7 +48,7 @@ private var mockCountryApi = CountryInfo(
 
 struct TabNavigationView: View {
     var countryCCA2: String
-    @State var country: CountryInfo? = mockCountryApi
+    @State var country: CountryInfo?
     @State var goToHomeView: Bool = false
     
     var body: some View {
@@ -66,7 +66,7 @@ struct TabNavigationView: View {
             .frame(height: 48)
             .background(Color("AppMainLightColor"))
             TabView{
-                CountryDetailsTab(country: country)
+                CountryDetailsTab(country: $country)
                     .tabItem(){
                         Group{
                             Image(systemName: "info.circle")
@@ -75,7 +75,7 @@ struct TabNavigationView: View {
                                 .foregroundColor(.black)
                         }
                     }
-                CountryMapTab(country: country)
+                CountryMapTab(country: $country)
                     .tabItem(){
                         Group{
                             Image(systemName: "map.circle.fill")
@@ -84,7 +84,7 @@ struct TabNavigationView: View {
                                 .foregroundColor(.black)
                         }
                     }
-                CountryHistoryTab(country: country)
+                CountryHistoryTab(country: $country)
                     .tabItem(){
                         Group{
                             Image(systemName: "book.circle.fill")
@@ -99,7 +99,25 @@ struct TabNavigationView: View {
             }
             .tint(.black)
         }
+        .onAppear(){loadCountry(cca2: countryCCA2)}
         .navigationBarBackButtonHidden(true)
+    }
+    
+    func loadCountry(cca2: String){
+        let requestURL = "https://countriesapp-backend.onrender.com/countries/cca2/\(cca2)"
+        guard let url = URL(string: requestURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, resp, error in
+               guard let data = data else { return }
+               
+               let decoder = JSONDecoder()
+               
+               do {
+                   country = try decoder.decode(CountryInfo.self, from: data)
+               } catch {
+                   print("Erro na leitura da API: \(error)")
+               }
+           }.resume()
     }
 }
 
