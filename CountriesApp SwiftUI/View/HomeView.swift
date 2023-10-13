@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseFirestore
 
 var mockApi = [
     CountryList2(cca2: "BR", namePt: "Brasil", nameUs: "Brazil", nameEs: "Brasil", flagPng: "https://flagcdn.com/w320/br.png", flagSvg: "https://flagcdn.com/br.svg"),
@@ -13,23 +15,17 @@ var mockApi = [
     CountryList2(cca2: "AU", namePt: "Australia", nameUs: "Australia", nameEs: "Australia", flagPng: "https://flagcdn.com/w320/au.png", flagSvg: "https://flagcdn.com/w320/au.png")
 ]
 
-struct CountryList2: Codable{
-    var cca2: String
-    var namePt: String
-    var nameUs: String
-    var nameEs: String
-    var flagPng: String
-    var flagSvg: String
-}
-
-struct HomeView: View {    
+struct HomeView: View {
+    let db = Firestore.firestore()
+    
     //Sheet handler
     @State var enteredText: String = ""
     @State var countryLIstFromApi: [CountryList2] = []
     @State var showSheet: Bool = false
     @State var countryList: [CountryList2] = []
     @State var goToLoginView: Bool = false
-    @State var userName: String = "Thiago"
+    
+    @State var user: User?
     
     @State var selectedCountry: CountryList2?
     @State var goToTabView: Bool = false
@@ -37,7 +33,7 @@ struct HomeView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Olá \(userName)")
+                Text("Olá \(user?.name ?? "")")
                     .foregroundColor(.black)
                     .font(.title)
                     .bold()
@@ -103,6 +99,7 @@ struct HomeView: View {
                         CountryCard(country: country)
                             .onTapGesture {
                                 countryList.append(country)
+                                updateUser()
                                 showSheet = false
                             }
                     }
@@ -111,6 +108,7 @@ struct HomeView: View {
             .padding(16)
         }
         .onAppear(){
+            getUserData()
         }
     }
     
@@ -150,11 +148,74 @@ struct HomeView: View {
             }
         }.resume()
     }
+    
+    private func getUserData(){
+        
+        
+        let docRef = db.collection("users").document("MB01QAkal2ONHLm6BdTWPjN8qaM2")
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                var data = document.data()
+                
+                print(data)
+                
+                if let name = data?["name"] as? String,
+                   let email = data?["email"] as? String
+                {
+                    var userFB = User(
+                        id: document.documentID,
+                        name: name,
+                        email: email,
+                        countries: []
+                    )
+                    
+                    if let countries = data?["countries"] as? [[String: Any]]{
+                        for country in countries{
+                            if let cca2 = country["cca2"] as? String,
+                               let flagPng = country["flagPng"] as? String,
+                               let flagSvg = country["flagSvg"] as? String,
+                               let nameEs = country["nameEs"] as? String,
+                               let nameUs = country["nameUs"] as? String,
+                               let namePt = country["namePt"] as? String
+                            {
+                                userFB.countries.append(CountryList2(
+                                    cca2: cca2,
+                                    namePt: namePt,
+                                    nameUs: nameUs,
+                                    nameEs: nameEs,
+                                    flagPng: flagPng,
+                                    flagSvg: flagSvg)
+                                )
+                            }
+                        }
+                    }
+                    user = userFB
+                    countryList = user?.countries ?? []
+                }
+                
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    func updateUser(){
+        guard var newUser = user else {return}
+        newUser.countries = countryList
+        let docRef = db.collection("users").document(newUser.id)
+        
+        docRef.setData(newUser.toDictionary()) { err in
+                    if let err = err {
+                        print("Error setting document: \(err)")
+                    }
+                }
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
-            showSheet: true, countryList: mockApi)
+            showSheet: false, countryList: mockApi)
     }
 }
