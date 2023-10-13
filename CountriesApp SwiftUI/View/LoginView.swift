@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
     @State var email: String = ""
@@ -37,7 +38,7 @@ struct LoginView: View {
                     .offset(y: -25)
                 }
                 KeepConectedToggle(rememberUser: $rememberUser)
-                StyledButton(placeholder: "Entrar"){goToHomeView = true}
+                StyledButton(placeholder: "Entrar"){login()}
                 AppleButton()
                 NavigationLink(destination: SignUpView()){
                     LoginFooterLink(message: "Não possui conta?", span: "Cadastre")
@@ -59,6 +60,28 @@ struct LoginView: View {
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden(true)
         .navigationDestination(isPresented: $goToHomeView){ HomeView()}
+    }
+    
+    func login(){
+        if(password.isEmpty || email.isEmpty ){
+            print("Todos os campos devem ser preeenchidos")
+            //alertMessage = "Todos os campos devem ser preeenchidos"
+            //showAlert = true
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password){
+            authResult, error in
+            
+            guard let user = authResult else {
+                print(error?.localizedDescription ?? "Ocorreu um erro do Firebase")
+                //alertMessage = error?.localizedDescription ?? "Ocorreu um erro do Firebase"
+                //showAlert = true
+                return
+            }
+            userId = Auth.auth().currentUser?.uid ?? nil
+            goToHomeView = true            
+        }
     }
 }
 

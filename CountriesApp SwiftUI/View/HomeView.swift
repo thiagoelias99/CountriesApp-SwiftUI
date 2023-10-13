@@ -17,6 +17,7 @@ var mockApi = [
 
 struct HomeView: View {
     let db = Firestore.firestore()
+    //var userId: String = "MB01QAkal2ONHLm6BdTWPjN8qaM2"
     
     //Sheet handler
     @State var enteredText: String = ""
@@ -150,9 +151,9 @@ struct HomeView: View {
     }
     
     private func getUserData(){
+        guard let userId else { return }
         
-        
-        let docRef = db.collection("users").document("MB01QAkal2ONHLm6BdTWPjN8qaM2")
+        let docRef = db.collection("users").document(userId)
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -216,6 +217,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
-            showSheet: false, countryList: mockApi)
+            )
     }
 }

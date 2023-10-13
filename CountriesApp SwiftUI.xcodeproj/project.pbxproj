@@ -27,6 +27,7 @@
 		C36CACEE2AD99E1A00508454 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CACED2AD99E1A00508454 /* FirebaseConfig.swift */; };
 		C36CACF02AD9A07700508454 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CACEF2AD9A07700508454 /* User.swift */; };
 		C36CACF22AD9AB5D00508454 /* CountryList2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CACF12AD9AB5D00508454 /* CountryList2.swift */; };
+		C36CACF42AD9B8CB00508454 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CACF32AD9B8CB00508454 /* Global.swift */; };
 		C380E1722AD96939005258A1 /* CountryDetailTitleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380E1712AD96939005258A1 /* CountryDetailTitleCard.swift */; };
 		C3A405452AD852B90047473F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405442AD852B90047473F /* SignUpView.swift */; };
 		C3A405472AD867E70047473F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405462AD867E70047473F /* HomeView.swift */; };
@@ -56,6 +57,7 @@
 		C36CACED2AD99E1A00508454 /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
 		C36CACEF2AD9A07700508454 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C36CACF12AD9AB5D00508454 /* CountryList2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryList2.swift; sourceTree = "<group>"; };
+		C36CACF32AD9B8CB00508454 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C380E1712AD96939005258A1 /* CountryDetailTitleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailTitleCard.swift; sourceTree = "<group>"; };
 		C3A405442AD852B90047473F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C3A405462AD867E70047473F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				C34A1C4F2AD8195C00587234 /* ContentView.swift */,
 				C34A1C512AD8195D00587234 /* Assets.xcassets */,
 				C34A1C532AD8195D00587234 /* Preview Content */,
+				C36CACF32AD9B8CB00508454 /* Global.swift */,
 			);
 			path = "CountriesApp SwiftUI";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				C34A1C5E2AD81B8B00587234 /* RoundedTextField.swift in Sources */,
 				C34A1C622AD8370600587234 /* StyledButton.swift in Sources */,
 				C3A405472AD867E70047473F /* HomeView.swift in Sources */,
+				C36CACF42AD9B8CB00508454 /* Global.swift in Sources */,
 				C34A1C602AD8300300587234 /* LoginView.swift in Sources */,
 				C3D5B64E2AD958E3001CF583 /* CountryDetailCard.swift in Sources */,
 				C3D5B64C2AD94C6E001CF583 /* CountryHistoryTab.swift in Sources */,
