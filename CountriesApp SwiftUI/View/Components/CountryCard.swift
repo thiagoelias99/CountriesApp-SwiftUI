@@ -37,6 +37,6 @@ struct CountryCard: View {
 
 struct CountryCard_Previews: PreviewProvider {
     static var previews: some View {
-        CountryCard(country: CountryList2(cca2: "BR", namePt: "Brasil", nameUs: "Brazil", nameES: "Brasil", flagPng: "https://flagcdn.com/w320/br.png", flagSvg: "https://flagcdn.com/br.svg"))
+        CountryCard(country: CountryList2(cca2: "BR", namePt: "Brasil", nameUs: "Brazil", nameEs: "Brasil", flagPng: "https://flagcdn.com/w320/br.png", flagSvg: "https://flagcdn.com/br.svg"))
     }
 }

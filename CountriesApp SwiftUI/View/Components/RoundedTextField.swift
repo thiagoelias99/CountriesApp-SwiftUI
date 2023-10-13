@@ -57,8 +57,6 @@ struct RoundedTextField: View {
                     .stroke(Color("AppMainColor"), lineWidth: 1)
             )
         }
-        
-        
     }
     
     func toggle(){
