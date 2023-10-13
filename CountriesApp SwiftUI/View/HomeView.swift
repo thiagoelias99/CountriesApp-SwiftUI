@@ -31,6 +31,9 @@ struct HomeView: View {
     @State var goToLoginView: Bool = false
     @State var userName: String = "Thiago"
     
+    @State var selectedCountry: CountryList2?
+    @State var goToTabView: Bool = false
+    
     var body: some View {
         VStack{
             HStack{
@@ -58,6 +61,10 @@ struct HomeView: View {
                 ScrollView{
                     ForEach(countryList, id: \.cca2){ country in
                         CountryCard(country: country)
+                            .onTapGesture(){
+                                selectedCountry = country
+                                goToTabView = true
+                            }
                     }
                 }
                 StyledButton(placeholder: "Adicionar País"){showSheet = true}
@@ -69,6 +76,8 @@ struct HomeView: View {
         .edgesIgnoringSafeArea(.all)
         .navigationBarBackButtonHidden(true)
         .navigationDestination(isPresented: $goToLoginView){LoginView()}
+        .navigationDestination(isPresented: $goToTabView){
+            TabNavigationView(countryCCA2: selectedCountry?.cca2 ?? "")}
         .sheet(isPresented: $showSheet){
             VStack{
                 RoundedTextField(placeholder: "Procure pelo nome do país", text: $enteredText)

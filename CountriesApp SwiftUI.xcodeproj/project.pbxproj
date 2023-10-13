@@ -18,10 +18,16 @@
 		C34A1C662AD838C600587234 /* LoginFooterLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C652AD838C500587234 /* LoginFooterLink.swift */; };
 		C34A1C682AD83AB700587234 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C672AD83AB700587234 /* Owner.swift */; };
 		C34A1C6A2AD83B4000587234 /* KeepConectedToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A1C692AD83B4000587234 /* KeepConectedToggle.swift */; };
+		C380E1722AD96939005258A1 /* CountryDetailTitleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380E1712AD96939005258A1 /* CountryDetailTitleCard.swift */; };
 		C3A405452AD852B90047473F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405442AD852B90047473F /* SignUpView.swift */; };
 		C3A405472AD867E70047473F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405462AD867E70047473F /* HomeView.swift */; };
 		C3A4054A2AD869AE0047473F /* CountryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405492AD869AE0047473F /* CountryList.swift */; };
 		C3A4054C2AD86D0A0047473F /* CountryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4054B2AD86D0A0047473F /* CountryCard.swift */; };
+		C3A405512AD89CD40047473F /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A405502AD89CD40047473F /* TabNavigationView.swift */; };
+		C3D5B6482AD94A5A001CF583 /* CountryDetailsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5B6472AD94A5A001CF583 /* CountryDetailsTab.swift */; };
+		C3D5B64A2AD94C2E001CF583 /* CountryMapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5B6492AD94C2E001CF583 /* CountryMapTab.swift */; };
+		C3D5B64C2AD94C6E001CF583 /* CountryHistoryTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5B64B2AD94C6E001CF583 /* CountryHistoryTab.swift */; };
+		C3D5B64E2AD958E3001CF583 /* CountryDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5B64D2AD958E3001CF583 /* CountryDetailCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,10 +43,16 @@
 		C34A1C652AD838C500587234 /* LoginFooterLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFooterLink.swift; sourceTree = "<group>"; };
 		C34A1C672AD83AB700587234 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		C34A1C692AD83B4000587234 /* KeepConectedToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepConectedToggle.swift; sourceTree = "<group>"; };
+		C380E1712AD96939005258A1 /* CountryDetailTitleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailTitleCard.swift; sourceTree = "<group>"; };
 		C3A405442AD852B90047473F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C3A405462AD867E70047473F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C3A405492AD869AE0047473F /* CountryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryList.swift; sourceTree = "<group>"; };
 		C3A4054B2AD86D0A0047473F /* CountryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCard.swift; sourceTree = "<group>"; };
+		C3A405502AD89CD40047473F /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
+		C3D5B6472AD94A5A001CF583 /* CountryDetailsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsTab.swift; sourceTree = "<group>"; };
+		C3D5B6492AD94C2E001CF583 /* CountryMapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryMapTab.swift; sourceTree = "<group>"; };
+		C3D5B64B2AD94C6E001CF583 /* CountryHistoryTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryHistoryTab.swift; sourceTree = "<group>"; };
+		C3D5B64D2AD958E3001CF583 /* CountryDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,10 @@
 				C34A1C5F2AD8300300587234 /* LoginView.swift */,
 				C3A405442AD852B90047473F /* SignUpView.swift */,
 				C3A405462AD867E70047473F /* HomeView.swift */,
+				C3A405502AD89CD40047473F /* TabNavigationView.swift */,
+				C3D5B6472AD94A5A001CF583 /* CountryDetailsTab.swift */,
+				C3D5B6492AD94C2E001CF583 /* CountryMapTab.swift */,
+				C3D5B64B2AD94C6E001CF583 /* CountryHistoryTab.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +128,8 @@
 				C34A1C672AD83AB700587234 /* Owner.swift */,
 				C34A1C692AD83B4000587234 /* KeepConectedToggle.swift */,
 				C3A4054B2AD86D0A0047473F /* CountryCard.swift */,
+				C3D5B64D2AD958E3001CF583 /* CountryDetailCard.swift */,
+				C380E1712AD96939005258A1 /* CountryDetailTitleCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -201,9 +219,15 @@
 				C34A1C622AD8370600587234 /* StyledButton.swift in Sources */,
 				C3A405472AD867E70047473F /* HomeView.swift in Sources */,
 				C34A1C602AD8300300587234 /* LoginView.swift in Sources */,
+				C3D5B64E2AD958E3001CF583 /* CountryDetailCard.swift in Sources */,
+				C3D5B64C2AD94C6E001CF583 /* CountryHistoryTab.swift in Sources */,
+				C3D5B64A2AD94C2E001CF583 /* CountryMapTab.swift in Sources */,
 				C3A405452AD852B90047473F /* SignUpView.swift in Sources */,
+				C3D5B6482AD94A5A001CF583 /* CountryDetailsTab.swift in Sources */,
 				C3A4054A2AD869AE0047473F /* CountryList.swift in Sources */,
 				C34A1C4E2AD8195C00587234 /* CountriesApp_SwiftUIApp.swift in Sources */,
+				C380E1722AD96939005258A1 /* CountryDetailTitleCard.swift in Sources */,
+				C3A405512AD89CD40047473F /* TabNavigationView.swift in Sources */,
 				C34A1C662AD838C600587234 /* LoginFooterLink.swift in Sources */,
 				C3A4054C2AD86D0A0047473F /* CountryCard.swift in Sources */,
 				C34A1C6A2AD83B4000587234 /* KeepConectedToggle.swift in Sources */,
