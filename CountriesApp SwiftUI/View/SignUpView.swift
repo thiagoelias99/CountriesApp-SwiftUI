@@ -2,7 +2,7 @@
 //  SignUpView.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
@@ -51,63 +51,62 @@ struct SignUpView: View {
         }
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden(true)
-        .navigationDestination(isPresented: $goToLoginView){LoginView()}        .alert(isPresented: $showAlert){
+        .navigationDestination(isPresented: $goToLoginView){LoginView()}
+        .alert(isPresented: $showAlert){
             Alert(title: Text("Falha no cadastro"), message: Text(alertMessage))
         }
     }
     
     func signUp(){
         if(password != passwordCheck){
-            print("As senha não são iguais")
             alertMessage = "As senha não são iguais"
             showAlert = true
             return
         }
         if(name.isEmpty || email.isEmpty || password.isEmpty || passwordCheck.isEmpty){
-            print("Todos os campos devem ser preeenchidos")
             alertMessage = "Todos os campos devem ser preeenchidos"
             showAlert = true
             return
         }
         
+        //Faz cadastro pelo backend
         let requestURL = "https://countriesapp-backend.onrender.com/signup"
-            guard let url = URL(string: requestURL) else { return }
-
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            let parameters: [String: String] = [
-                "name": name,
-                "email": email,
-                "password": password
-            ]
-            
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
-            } catch {
-                print("Erro ao criar dados JSON: \(error)")
+        guard let url = URL(string: requestURL) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body: [String: String] = [
+            "name": name,
+            "email": email,
+            "password": password
+        ]
+        
+        //Stringfy do body
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body)
+        } catch {
+            print("Erro ao criar dados JSON: \(error)")
+            return
+        }
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Erro na solicitação POST: \(error?.localizedDescription ?? "Erro desconhecido")")
                 return
             }
-
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    print("Erro na solicitação POST: \(error?.localizedDescription ?? "Erro desconhecido")")
-                    return
+            //Retorno do back de sucesso é código 201
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 201 {
+                    goToLoginView = true
+                } else {
+                    alertMessage = "Erro ao cadastrar \(httpResponse.statusCode)"
+                    showAlert = true
                 }
-                
-                if let httpResponse = response as? HTTPURLResponse {
-                    if httpResponse.statusCode == 201 {
-                        // Requisição bem-sucedida
-                        print("Requisição POST bem-sucedida")
-                        goToLoginView = true
-                    } else {
-                        // Erro no servidor, manipule conforme necessário
-                        print("Erro no servidor - Código de status: \(httpResponse.statusCode)")
-                    }
-                }
-            }.resume()
+            }
+        }.resume()
     }
 }
 

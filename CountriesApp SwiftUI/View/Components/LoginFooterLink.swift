@@ -2,15 +2,14 @@
 //  LoginFooterLink.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
 
 struct LoginFooterLink: View {
     var message: String
-    var span: String
-    
+    var span: String    
     
     var body: some View {
         HStack{
@@ -19,7 +18,6 @@ struct LoginFooterLink: View {
             Text(span)
                 .foregroundColor(Color("AppMainColor"))
                 .bold()
-            
         }
         .frame(maxWidth: .infinity)
         .padding(.top)

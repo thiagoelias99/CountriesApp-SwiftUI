@@ -2,7 +2,7 @@
 //  StyledButton.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
@@ -18,14 +18,12 @@ struct StyledButton: View {
             Text(placeholder)
                 .font(.body)
                 .foregroundColor(.white)
-            
         }
         .frame(maxWidth: .infinity)
         .frame(height: 40)
         .background(Color("AppMainColor"))
         .cornerRadius(10)
-        .padding(.top)
-        
+        .padding(.top)        
     }
     
     func defaultAction(){

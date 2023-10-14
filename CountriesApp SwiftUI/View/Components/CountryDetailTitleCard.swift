@@ -2,7 +2,7 @@
 //  CountryDetailTitleCard.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/13/23.
+//  Created by Thiago Elias on 10/13/23.
 //
 
 import SwiftUI
@@ -10,8 +10,7 @@ import SwiftUI
 struct CountryDetailTitleCard: View {
     var countryName: String
     var cca3: String
-    var completName: String
-    
+    var completName: String    
     
     var body: some View {
         HStack{

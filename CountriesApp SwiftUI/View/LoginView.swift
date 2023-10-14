@@ -2,7 +2,7 @@
 //  LoginView.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
@@ -12,8 +12,9 @@ struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var rememberUser: Bool = true
-    
     @State var goToHomeView: Bool = false
+    @State var showAlert: Bool = false
+    @State var alertMessage: String = ""
     
     var body: some View {
         VStack(alignment: .center){
@@ -58,29 +59,33 @@ struct LoginView: View {
             Spacer()
         }
         .padding(.horizontal, 16)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true) //Para esconder a seta de back
         .navigationDestination(isPresented: $goToHomeView){ HomeView()}
+        .alert(isPresented: $showAlert){
+            Alert(title: Text("Falha no cadastro"), message: Text(alertMessage))
+        }
     }
     
     func login(){
         if(password.isEmpty || email.isEmpty ){
             print("Todos os campos devem ser preeenchidos")
-            //alertMessage = "Todos os campos devem ser preeenchidos"
-            //showAlert = true
+            alertMessage = "Todos os campos devem ser preeenchidos"
+            showAlert = true
             return
         }
         
+        //Faz auth com firebase e guarda o userId logado
         Auth.auth().signIn(withEmail: email, password: password){
             authResult, error in
             
             guard let user = authResult else {
                 print(error?.localizedDescription ?? "Ocorreu um erro do Firebase")
-                //alertMessage = error?.localizedDescription ?? "Ocorreu um erro do Firebase"
-                //showAlert = true
+                alertMessage = error?.localizedDescription ?? "Ocorreu um erro do Firebase"
+                showAlert = true
                 return
             }
             userId = Auth.auth().currentUser?.uid ?? nil
-            goToHomeView = true            
+            goToHomeView = true
         }
     }
 }

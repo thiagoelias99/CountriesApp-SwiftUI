@@ -2,7 +2,7 @@
 //  TabNavigationView.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
@@ -26,26 +26,6 @@ struct CountryInfo: Codable{
     var regionPt: String
 }
 
-private var mockCountryApi = CountryInfo(
-    area: 8515767,
-    capitalsPt: ["Brasília"],
-    cca2: "BR",
-    cca3: "BRA",
-    coatOfArmsPng: "https://mainfacts.com/media/images/coats_of_arms/br.png",
-    currencyNamePt: "Real brasileiro",
-    currencySymbol: "R$",
-    flagPng: "https://flagcdn.com/w320/br.png",
-    historyPt: "Maior país da América do Sul, com vasta área de litoral banhada pelo oceano Atlântico.",
-    languages: ["Portuguese"],
-    latitude: -15.79,
-    longitude: -47.88,
-    nameCompletePt: "República Federativa do Brasil",
-    namePt: "Brasil",
-    population: 212559409,
-    regionPt: "América do sul")
-
-
-
 struct TabNavigationView: View {
     var countryCCA2: String
     @State var country: CountryInfo?
@@ -59,13 +39,14 @@ struct TabNavigationView: View {
                         .foregroundColor(.black)
                         .bold()
                 }
-                Text(countryCCA2)
+                Text("voltar")
                 Spacer()
             }
             .padding(.horizontal, 16)
             .frame(height: 48)
             .background(Color("AppMainLightColor"))
             TabView{
+                //Primeiro abre por padrão
                 CountryDetailsTab(country: $country)
                     .tabItem(){
                         Group{
@@ -95,14 +76,17 @@ struct TabNavigationView: View {
                     }
             }
             .onAppear(){
+                //Background do seletor de tabs
                 UITabBar.appearance().backgroundColor = UIColor(Color("AppMainLightColor"))
             }
+            //Cor do ícone e texto do seletor
             .tint(.black)
         }
         .onAppear(){loadCountry(cca2: countryCCA2)}
         .navigationBarBackButtonHidden(true)
     }
     
+    //Busca as informação do país no back pelo cód cca2
     func loadCountry(cca2: String){
         let requestURL = "https://countriesapp-backend.onrender.com/countries/cca2/\(cca2)"
         guard let url = URL(string: requestURL) else { return }
@@ -114,17 +98,6 @@ struct TabNavigationView: View {
                
                do {
                    country = try decoder.decode(CountryInfo.self, from: data)
-               } catch let DecodingError.dataCorrupted(context) {
-                   print(context)
-               } catch let DecodingError.keyNotFound(key, context) {
-                   print("Key '\(key)' not found:", context.debugDescription)
-                   print("codingPath:", context.codingPath)
-               } catch let DecodingError.valueNotFound(value, context) {
-                   print("Value '\(value)' not found:", context.debugDescription)
-                   print("codingPath:", context.codingPath)
-               } catch let DecodingError.typeMismatch(type, context) {
-                   print("Type '\(type)' mismatch:", context.debugDescription)
-                   print("codingPath:", context.codingPath)
                } catch {
                    print("Erro na leitura da API: \(error)")
                }

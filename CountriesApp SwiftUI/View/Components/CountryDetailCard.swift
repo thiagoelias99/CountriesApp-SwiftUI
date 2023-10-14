@@ -2,7 +2,7 @@
 //  CountryDetailCard.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/13/23.
+//  Created by Thiago Elias on 10/13/23.
 //
 
 import SwiftUI

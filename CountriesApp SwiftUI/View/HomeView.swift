@@ -2,32 +2,22 @@
 //  HomeView.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 
-var mockApi = [
-    CountryList2(cca2: "BR", namePt: "Brasil", nameUs: "Brazil", nameEs: "Brasil", flagPng: "https://flagcdn.com/w320/br.png", flagSvg: "https://flagcdn.com/br.svg"),
-    CountryList2(cca2: "GI", namePt: "Gibraltar", nameUs: "Gibraltar", nameEs: "Gibraltar", flagPng: "https://flagcdn.com/w320/gi.png", flagSvg: "https://flagcdn.com/w320/gi.png"),
-    CountryList2(cca2: "AU", namePt: "Australia", nameUs: "Australia", nameEs: "Australia", flagPng: "https://flagcdn.com/w320/au.png", flagSvg: "https://flagcdn.com/w320/au.png")
-]
-
 struct HomeView: View {
     let db = Firestore.firestore()
-    //var userId: String = "MB01QAkal2ONHLm6BdTWPjN8qaM2"
     
-    //Sheet handler
     @State var enteredText: String = ""
     @State var countryLIstFromApi: [CountryList2] = []
     @State var showSheet: Bool = false
     @State var countryList: [CountryList2] = []
     @State var goToLoginView: Bool = false
-    
     @State var user: User?
-    
     @State var selectedCountry: CountryList2?
     @State var goToTabView: Bool = false
     
@@ -75,6 +65,7 @@ struct HomeView: View {
         .navigationDestination(isPresented: $goToLoginView){LoginView()}
         .navigationDestination(isPresented: $goToTabView){
             TabNavigationView(countryCCA2: selectedCountry?.cca2 ?? "")}
+        //Sheet de seleção de país
         .sheet(isPresented: $showSheet){
             VStack{
                 Text("Procure pelo nome do país")
@@ -113,14 +104,13 @@ struct HomeView: View {
         }
     }
     
+    //Função que executa no sheet para procurar país, a partir de 3 letras
     private func loadCountries(text: String){
         if(text.count < 3){
-            print("api igonre")
             return
         }
         
         let requestURL = "https://countriesapp-backend.onrender.com/countries/\(text)"
-        print(requestURL)
         guard let url = URL(string: requestURL) else { return }
         
         URLSession.shared.dataTask(with: url) { data, resp, error in
@@ -133,23 +123,14 @@ struct HomeView: View {
             do {
                 countryLIstFromApi = try decoder.decode([CountryList2].self, from: data)
                 print(countryLIstFromApi)
-            } catch let DecodingError.dataCorrupted(context) {
-                print(context)
-            } catch let DecodingError.keyNotFound(key, context) {
-                print("Key '\(key)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.valueNotFound(value, context) {
-                print("Value '\(value)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.typeMismatch(type, context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
             } catch {
                 print("Erro na leitura da API: \(error)")
             }
         }.resume()
     }
     
+    //Carrega do firebase informação do usuário ao carregar a tela
+    //Se usuário não estiver logado/existir volta para tela de login
     private func getUserData(){
         guard let userId else { return }
         
@@ -158,8 +139,6 @@ struct HomeView: View {
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 var data = document.data()
-                
-                print(data)
                 
                 if let name = data?["name"] as? String,
                    let email = data?["email"] as? String
@@ -196,27 +175,28 @@ struct HomeView: View {
                 }
                 
             } else {
-                print("Document does not exist")
+                print("Usuário não encontrado")
+                goToLoginView = true
             }
         }
     }
     
+    //Atualiza o usuário no firebase
     func updateUser(){
         guard var newUser = user else {return}
         newUser.countries = countryList
         let docRef = db.collection("users").document(newUser.id)
         
         docRef.setData(newUser.toDictionary()) { err in
-                    if let err = err {
-                        print("Error setting document: \(err)")
-                    }
-                }
+            if let err = err {
+                print("Error setting document: \(err)")
+            }
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(
-            )
+        HomeView()
     }
 }

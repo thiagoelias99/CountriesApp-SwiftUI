@@ -2,7 +2,7 @@
 //  RoundedTextField.swift
 //  CountriesApp SwiftUI
 //
-//  Created by user241339 on 10/12/23.
+//  Created by Thiago Elias on 10/12/23.
 //
 
 import SwiftUI
@@ -42,8 +42,7 @@ struct RoundedTextField: View {
                         Image(systemName: showPassword ? "eye.slash" : "eye")
                             .foregroundColor(.gray)
                     }
-                    .foregroundColor(Color(uiColor: .tertiaryLabel))
-                    
+                    .foregroundColor(Color(uiColor: .tertiaryLabel))                    
                 }
             }
             .padding(.horizontal, 16)
