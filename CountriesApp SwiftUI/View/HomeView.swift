@@ -20,6 +20,7 @@ struct HomeView: View {
     @State var user: User?
     @State var selectedCountry: CountryList2?
     @State var goToTabView: Bool = false
+    @State var showDeleteAlert: Bool = false
     
     var body: some View {
         VStack{
@@ -51,6 +52,10 @@ struct HomeView: View {
                             .onTapGesture(){
                                 selectedCountry = country
                                 goToTabView = true
+                            }
+                            .onLongPressGesture(){
+                                selectedCountry = country
+                                showDeleteAlert = true
                             }
                     }
                 }
@@ -102,8 +107,21 @@ struct HomeView: View {
         .onAppear(){
             getUserData()
         }
+        .alert(isPresented: $showDeleteAlert){
+            Alert(
+                title: Text("Quer realmente deletar o país \(selectedCountry?.namePt ?? "") ?"),
+                primaryButton: .default(
+                    Text("Cancelar"),
+                    action: {}
+                ),
+                secondaryButton: .destructive(
+                    Text("Deletar"),
+                    action: deleteCountry
+                )
+            )
+        }
     }
-    
+
     //Função que executa no sheet para procurar país, a partir de 3 letras
     private func loadCountries(text: String){
         if(text.count < 3){
@@ -193,10 +211,18 @@ struct HomeView: View {
             }
         }
     }
+    
+    //Deleta pais da lista e atualiza firebase
+    private func deleteCountry(){
+        countryList.removeAll(){ item in
+            item.cca2 == selectedCountry?.cca2
+        }
+        updateUser()
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(countryList: mockApi)
     }
 }

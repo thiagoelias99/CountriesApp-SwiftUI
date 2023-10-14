@@ -111,9 +111,9 @@
 				C34A1C5B2AD81B6600587234 /* View */,
 				C34A1C4D2AD8195C00587234 /* CountriesApp_SwiftUIApp.swift */,
 				C34A1C4F2AD8195C00587234 /* ContentView.swift */,
+				C36CACF32AD9B8CB00508454 /* Global.swift */,
 				C34A1C512AD8195D00587234 /* Assets.xcassets */,
 				C34A1C532AD8195D00587234 /* Preview Content */,
-				C36CACF32AD9B8CB00508454 /* Global.swift */,
 			);
 			path = "CountriesApp SwiftUI";
 			sourceTree = "<group>";
